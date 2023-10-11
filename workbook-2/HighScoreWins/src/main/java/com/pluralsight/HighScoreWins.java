@@ -1,2 +1,66 @@
-package com.pluralsight;public class HighScoreWins {
+package com.pluralsight;
+
+import java.util.Scanner;
+
+public class HighScoreWins {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Home:Visitor|21:9
+        System.out.println("Please enter the game score: ");
+        String score = scanner.nextLine();
+
+        System.out.println("The score is: " + score);
+
+        int pipeIndex = score.indexOf('|');
+
+        if (pipeIndex == -1){
+            System.out.println("Invalid input format");
+            scanner.close();
+            return;
+        }
+        // Split the input into home and visitor parts
+        String teamPart = score.substring(0, pipeIndex);
+        String scorePart = score.substring(pipeIndex + 1);
+
+        // Find the position of the colon character (:)
+        int colonIndex = teamPart.indexOf(':');
+
+        if (colonIndex == -1) {
+            System.out.println("Invalid input format.");
+            scanner.close();
+            return;
+        }
+
+        // Extract team names and scores
+        String homeTeam = teamPart.substring(0, colonIndex);
+        String visitorTeam = teamPart.substring(colonIndex + 1);
+
+        // Find the position of the colon character (:)
+        colonIndex = scorePart.indexOf(':');
+
+        if (colonIndex == -1) {
+            System.out.println("Invalid input format.");
+            scanner.close();
+            return;
+        }
+
+        int homeScore = Integer.parseInt(scorePart.substring(0, colonIndex));
+        int visitorScore = Integer.parseInt(scorePart.substring(colonIndex + 1));
+
+        // Determine the winning team
+        String winner;
+        if (homeScore > visitorScore) {
+            winner = homeTeam;
+        } else if (visitorScore > homeScore) {
+            winner = visitorTeam;
+        } else {
+            winner = "Tie"; // In case of a tie
+        }
+
+        // Display the winning team
+        System.out.println("Winner: " + winner);
+
+        scanner.close();
+    }
 }

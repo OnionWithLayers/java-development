@@ -25,8 +25,6 @@ public class PayrollCalculator {
             System.out.println("YOUR GROSS PAY IS ONLY $" + grossPay + "??!?? AHAHAHAHHAHA");
 
         }
-
-
     }
 }
 
