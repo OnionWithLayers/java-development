@@ -8,6 +8,7 @@ public class CellPhoneService {
 
         CellPhone cellPhone1 = new CellPhone();
 
+        System.out.println("Please enter your phone info");
         System.out.println("Please enter your serial number: ");
 //        we need to get the info first before we "set" it to something, which is why
 //        the scanner is before the setter
@@ -39,7 +40,8 @@ public class CellPhoneService {
         //now make a SECOND PHONE
         CellPhone cellPhone2 = new CellPhone();
 
-        System.out.println("Please enter your serial number: ");
+        System.out.println("Please enter info for phone 2");
+        System.out.println("Please enter the serial number: ");
 //        we need to get the info first before we "set" it to something, which is why
 //        the scanner is before the setter
 //        this phone code does NOT need the variable type (String, int, double, etc) bc
@@ -48,15 +50,15 @@ public class CellPhoneService {
         cellPhone2.setSerialNum(serialNum);
         scanner.nextLine();
 
-        System.out.println("Please enter your model type: ");
+        System.out.println("Please enter the model type: ");
         model = scanner.nextLine().trim();
         cellPhone2.setModel(model);
 
-        System.out.println("Please enter your carrier: ");
+        System.out.println("Please enter the carrier: ");
         carrier = scanner.nextLine().trim();
         cellPhone2.setCarrier(carrier);
 
-        System.out.println("Please enter your phone number: ");
+        System.out.println("Please enter the phone number: ");
         phoneNum = scanner.nextLine().trim();
         cellPhone2.setPhoneNum(phoneNum);
 
@@ -71,13 +73,46 @@ public class CellPhoneService {
         System.out.println("Your phone number is: " + cellPhone1.getPhoneNum());
         System.out.println("The name of the phone's owner is: " + cellPhone1.getOwner());
 
-        /*this code sends the info you got from cellPhone1 and cellPhone2
+
+
+        CellPhone cellPhone3 = new CellPhone(serialNum, model, carrier, phoneNum, owner);
+
+        System.out.println("Please enter info for phone 3");
+        System.out.println("Please enter the serial number: ");
+        serialNum = scanner.nextInt();
+        cellPhone3.setSerialNum(serialNum);
+        scanner.nextLine();
+
+        System.out.println("Please enter the model type: ");
+        model = scanner.nextLine().trim();
+        cellPhone3.setModel(model);
+
+        System.out.println("Please enter the carrier: ");
+        carrier = scanner.nextLine().trim();
+        cellPhone3.setCarrier(carrier);
+
+        System.out.println("Please enter the phone number: ");
+        phoneNum = scanner.nextLine().trim();
+        cellPhone3.setPhoneNum(phoneNum);
+
+        System.out.println("Please enter the owner name: ");
+        owner = scanner.nextLine().trim();
+        cellPhone3.setOwner(owner);
+
+        //close the scanner
+        scanner.close();
+ /*this code sends the info you got from cellPhone1 and cellPhone2
         and sends it to the method "display" */
         display(cellPhone1);
         display(cellPhone2);
+        display(cellPhone3);
 
-        System.out.println(cellPhone1.getOwner() + "'s phone is dialing " + cellPhone2.getDial());
-        System.out.println(cellPhone2.getOwner() + "'s phone is dialing " + cellPhone1.getDial());
+        cellPhone1.dial(cellPhone1.getPhoneNum());
+        cellPhone2.dial(cellPhone2.getPhoneNum());
+        cellPhone3.dial(cellPhone3.getPhoneNum());
+
+//        System.out.println(cellPhone1.getOwner() + "'s phone is dialing " + cellPhone2.getDial());
+//        System.out.println(cellPhone2.getOwner() + "'s phone is dialing " + cellPhone1.getDial());
 
     }
     public static void display(CellPhone phone) {
@@ -87,6 +122,9 @@ public class CellPhoneService {
         System.out.println("Your phone number is: " + phone.getPhoneNum());
         System.out.println("The name of the phone's owner is: " + phone.getOwner());
         System.out.println(phone.getOwner() + "'s phone is dialing " + phone.getDial());
+    }
+    public static void dial(CellPhone phone){
+
     }
 
 }

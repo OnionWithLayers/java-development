@@ -18,6 +18,14 @@ public class CellPhone {
         dial = "855-555-2222";
     }
 
+    public CellPhone(int serialNum, String model, String carrier, String phoneNum, String owner) {
+        this.serialNum = serialNum;
+        this.model = model;
+        this.carrier = carrier;
+        this.phoneNum = phoneNum;
+        this.owner = owner;
+    }
+
     //GETTERS
     public int getSerialNum() {
 
@@ -70,7 +78,17 @@ public class CellPhone {
     public void setOwner(String owner) {
         this.owner = owner;
     }
-    public void setDial(String dial){
+
+    public void dial(String number) {
+        System.out.println("\n" + owner + "s phone is calling" + number);
+    }
+    public void dial(CellPhone phone){
+        System.out.println();
+    }
+
+    public void setDial(String dial) {
         this.dial = dial;
     }
+
+
 }
