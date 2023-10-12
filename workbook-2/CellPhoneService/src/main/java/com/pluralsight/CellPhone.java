@@ -6,46 +6,56 @@ public class CellPhone {
     private String carrier;
     private String phoneNum;
     private String owner;
+    private String dial;
 
     public CellPhone() {
-    }
 
-    public CellPhone(int serialNum, String model, String carrier, String phoneNum, String owner) {
-
-        this.serialNum = serialNum;
-        this.model = model;
-        this.carrier = carrier;
-        this.phoneNum = phoneNum;
-        this.owner = owner;
+        serialNum = 0;
+        model = "";
+        carrier = "";
+        phoneNum = "";
+        owner = "";
+        dial = "855-555-2222";
     }
 
     //GETTERS
     public int getSerialNum() {
+
         return serialNum;
     }
 
     public String getModel() {
+
         return model;
     }
 
     public String getCarrier() {
+
         return carrier;
     }
 
     public String getPhoneNum() {
+
         return phoneNum;
     }
 
     public String getOwner() {
+
         return owner;
+    }
+
+    public String getDial() {
+        return dial;
     }
 
     //SETTERS
     public void setSerialNum(int serialNum) {
+
         this.serialNum = serialNum;
     }
 
     public void setModel(String model) {
+
         this.model = model;
     }
 
@@ -59,5 +69,8 @@ public class CellPhone {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+    public void setDial(String dial){
+        this.dial = dial;
     }
 }
