@@ -32,5 +32,9 @@ public class FormatDates {
         //--> abd then formats it to whatever pattern you put earlier
         String formatTheFormattedTime = instant.atZone(zone).format(formattedTime);
         System.out.println("The time in GMT is: " + formatTheFormattedTime);
+
+        System.out.println("===================");
+
+
     }
 }
