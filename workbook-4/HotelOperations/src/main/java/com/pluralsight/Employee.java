@@ -1,13 +1,13 @@
 package com.pluralsight;
 
 public class Employee {
-    private String employeeID;
+    private int employeeID;
     private String Name;
     private String department;
     private double payRate;
-    private int hoursWorked;
+    private double hoursWorked;
 
-    public Employee(String employeeID, String name, String department, double payRate, int hoursWorked) {
+    public Employee(int employeeID, String name, String department, double payRate, double hoursWorked) {
         this.employeeID = employeeID;
         Name = name;
         this.department = department;
@@ -15,53 +15,40 @@ public class Employee {
         this.hoursWorked = hoursWorked;
     }
 
-    public String getEmployeeID() {
+    public int getEmployeeID() {
         return employeeID;
-    }
-
-    public void setEmployeeID(String employeeID) {
-        this.employeeID = employeeID;
     }
 
     public String getName() {
         return Name;
     }
 
-    public void setName(String name) {
-        Name = name;
-    }
-
     public String getDepartment() {
         return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
     }
 
     public double getPayRate() {
         return payRate;
     }
 
-    public void setPayRate(double payRate) {
-        this.payRate = payRate;
-    }
-
-    public int getHoursWorked() {
+    public double getHoursWorked() {
         return hoursWorked;
     }
 
-    public void setHoursWorked(int hoursWorked) {
-        this.hoursWorked = hoursWorked;
+    public double getRegularHours(){
+        if(hoursWorked <= 40){
+            return  hoursWorked;
+        } else {
+            return 40;
+        }
+
     }
 
-    @Override
-    public String toString() {
-        return "Employee: \n" +
-                "employeeID: " + employeeID +
-                "\nName: " + Name +
-                "\ndepartment: " + department +
-                "\npayRate: " + payRate +
-                "\nhoursWorked: " + hoursWorked ;
+    public double getOvertimeHours(){
+        if(hoursWorked > 40){
+            return  hoursWorked - 40;
+        }else{
+            return 0;
+        }
     }
 }

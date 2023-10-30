@@ -1,67 +1,57 @@
 package com.pluralsight;
 
 public class Reservation {
-    private String RoomType;
-    private double Price;
-    private int NumOfNights;
+    private String roomType;
+    private double pricePerNight;
+    private int numOfNights;
     private boolean isWeekend;
-    private int ReservationTotal;
 
-    public Reservation(String roomType, double price, int numOfNights, boolean isWeekend, int reservationTotal) {
-        RoomType = roomType;
-        Price = price;
-        NumOfNights = numOfNights;
+    public Reservation(String roomType, int numOfNights, boolean isWeekend) {
+        this.roomType = roomType;
+        this.numOfNights = numOfNights;
         this.isWeekend = isWeekend;
-        ReservationTotal = reservationTotal;
+
+        if(roomType.equalsIgnoreCase("king")){
+            pricePerNight = 139.00;
+        } else if (roomType.equalsIgnoreCase("double")) {
+            pricePerNight = 124.00;
+        }
     }
 
     public String getRoomType() {
-        return RoomType;
-    }
-
-    public void setRoomType(String roomType) {
-        RoomType = roomType;
-    }
-
-    public double getPrice() {
-        return Price;
-    }
-
-    public void setPrice(double price) {
-        Price = price;
+        return roomType;
     }
 
     public int getNumOfNights() {
-        return NumOfNights;
-    }
-
-    public void setNumOfNights(int numOfNights) {
-        NumOfNights = numOfNights;
+        return numOfNights;
     }
 
     public boolean isWeekend() {
         return isWeekend;
     }
 
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+    public void setNumOfNights(int numOfNights) {
+        this.numOfNights = numOfNights;
+    }
+
     public void setWeekend(boolean weekend) {
         isWeekend = weekend;
     }
 
-    public int getReservationTotal() {
-        return ReservationTotal;
-    }
+    public double getPrice(){ //getPrice is the name of the subclass, so I can call it later
+             //totalPrice is to assign what the total price is
+        double totalPrice = pricePerNight * numOfNights;
 
-    public void setReservationTotal(int reservationTotal) {
-        ReservationTotal = reservationTotal;
+        if(isWeekend){
+            totalPrice = totalPrice * 1.1;     //or totalPrice *= 1.1;
+        }
+        return totalPrice;
     }
-
-    @Override
-    public String toString() {
-        return "Reservation: \n" +
-                "RoomType: " + RoomType +
-                "\nPrice: " + Price +
-                "\nNumOfNights: " + NumOfNights +
-                "\nisWeekend: " + isWeekend +
-                "\nReservationTotal: " + ReservationTotal;
+    public double getReservationTotal(){
+        return getPrice();
     }
 }
