@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class SearchEngineLogger {
     public static void main(String[] args) {
-        logAction("launch");
+        logAction ("launch");
         Scanner scanner = new Scanner(System.in);
 
         while (true){

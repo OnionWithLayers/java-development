@@ -29,7 +29,7 @@ public class FormatDates {
         //changes the date pattern to whats in the parentheses
         DateTimeFormatter formattedTime = DateTimeFormatter.ofPattern("E, MMM dd, yyyy HH: mm");
         //gets the instant of time right now --> at the zone of (whatever time zone you assigned earlier
-        //--> abd then formats it to whatever pattern you put earlier
+        //--> and then formats it to whatever pattern you put earlier
         String formatTheFormattedTime = instant.atZone(zone).format(formattedTime);
         System.out.println("The time in GMT is: " + formatTheFormattedTime);
 

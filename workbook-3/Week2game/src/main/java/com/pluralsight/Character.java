@@ -73,7 +73,7 @@ public class Character {
         sb.append("Name: ").append(getDescription()).append("\n");
         sb.append("Health Status: ").append(getHealthStatus()).append("\n");
         sb.append("Strength: ").append(strength).append("\n");
-        sb.append("Agility: ").append(agility).append("\n");
+        sb.append("Agility: ").append(agility);
 
         return sb.toString();
     }

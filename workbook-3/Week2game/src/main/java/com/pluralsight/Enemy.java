@@ -51,4 +51,13 @@ public class Enemy {
         character.setHealth(updatedHP);
         System.out.println("With the weapon multiplier, you've dealt " + damageDone + " damage to " + character.getName() + "!");
     }
+
+    public String getEnemyStatus(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Health Status: ").append(getHealth()).append("\n");
+        sb.append("Damage: ").append(damage).append("\n");
+//        sb.append("Agility: ").append(agility).append("\n");
+
+        return sb.toString();
+    }
 }
