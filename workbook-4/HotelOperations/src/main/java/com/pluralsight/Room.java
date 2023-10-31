@@ -33,4 +33,25 @@ public class Room {
         return !isOccupied && !isDirty;
     }
 
+
+    //action methods
+
+    public void checkIn(){
+        if(isAvailable()){
+            isOccupied = true;
+            isDirty = true;
+        }
+    }
+
+    public void checkOut(){
+        isOccupied = false;
+    }
+
+    public void cleanRoom(){
+        if(!isOccupied){
+            isDirty = false;
+            System.out.println("The room has been cleaned.");
+        }
+    }
+
 }
