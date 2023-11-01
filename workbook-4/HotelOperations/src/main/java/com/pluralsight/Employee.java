@@ -40,6 +40,10 @@ public class Employee {
         return hoursWorked;
     }
 
+    public double getStartTime() {
+        return startTime;
+    }
+
     public double getRegularHours() {
         if (hoursWorked <= 40) {
             return hoursWorked;
