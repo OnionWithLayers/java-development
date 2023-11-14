@@ -1,14 +1,18 @@
 package com.pluralsight;
 
+import javax.naming.Name;
+
 public class Main {
     public static void main(String[] args) {
-        StaticClasses guy1 = new StaticClasses("Jon", "The", "Guy");
+        String hi = NameFormatter.format("Potator", "Soup");
+        System.out.println(hi);
 
-        guy1.getFirstName();
-        guy1.getMiddleName();
-        guy1.getLastName();
-        StaticClasses.setFullName(StaticClasses.getFullName());
+        String yo = NameFormatter.format("", "Jon", "Sue",
+                "Doe", "");
+        System.out.println(yo);
 
-        System.out.println(guy1);
+        System.out.println(NameFormatter.format("Mel Ody"));
+        System.out.println(NameFormatter.format("Mel Music Ody, PhD"));
+        System.out.println(NameFormatter.format("Dr. Mel Music Ody PhD"));
     }
 }
