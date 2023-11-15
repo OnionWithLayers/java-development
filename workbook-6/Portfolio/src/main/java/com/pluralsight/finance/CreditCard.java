@@ -34,7 +34,13 @@ public class CreditCard implements Valuable {
         this.balance = balance;
     }
 
-    public void CreditCard(String name, String accountNumber, double balance){
+    public void pay(){
+        balance -= balance;
+    }
+    public void deposit(){
+        balance += balance;
+    }
+    public void creditCard(String name, String accountNumber, double balance){
         System.out.println("Name: " + name + " | " + "account number: " + accountNumber +
                 " | balance: " + balance);
     }
