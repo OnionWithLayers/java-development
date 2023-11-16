@@ -55,7 +55,7 @@ public class Main {
         }
 
         for (int j = 0; j < people.size(); j++){
-                                                        //getSimpleName gelps print out the Class as a String
+                                                        //getSimpleName helps print out the Class as a String
             System.out.println(people.get(j).getClass().getSimpleName());
         }
 
