@@ -59,7 +59,7 @@ public class Program {
         System.out.println("The average age is: " + avgAge);
         System.out.println("The minimum age is: " + minAge);
         System.out.println("The maximum age is: " + maxAge);
-        
+
         System.out.println("=================================================");
 
     }

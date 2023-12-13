@@ -5,7 +5,7 @@ public class Dog extends Animal{
 
     public Dog(String name, String breed){
 //      'super' calls the parent constructor
-
+//      'super' must be first in constructor
         super(name);
         this.breed = breed;
 
