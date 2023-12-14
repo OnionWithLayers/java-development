@@ -1,18 +1,18 @@
 package com.pluralsight;
 
+import com.pluralsight.database.DataManager;
+import com.pluralsight.models.Product;
 import org.apache.commons.dbcp2.BasicDataSource;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
         if (args.length != 2) {
-            System.out.println("You need the username and password to run this");
+            System.out.println("User and password are needed to connect to the database");
+            System.exit(1);
         }
 
         String username = args[0];
@@ -23,50 +23,32 @@ public class Main {
         basicDataSource.setUsername(username);
         basicDataSource.setPassword(password);
 
-        getAllProducts(basicDataSource);
+        DataManager dataManager = new DataManager(basicDataSource);
+
+        List<Product> productList = dataManager.getAllProducts();
+
+        //productList.forEach(System.out::println);
+
+        for (Product product : productList) {
+            printProduct(product);
+        }
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter a Product ID: ");
-        int productId = scanner.nextInt();
-        getProductById(basicDataSource, productId);
+        int productID = scanner.nextInt();
+
+        Product product = dataManager.getProductById(productID);
+
+        printProduct(product);
 
     }
 
-    public static void getAllProducts(BasicDataSource basicDataSource) {
-        String productQuery = "SELECT ProductID, ProductName, UnitPrice, UnitsInStock FROM products";
-
-        try (Connection connection = basicDataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(productQuery);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
-            while (resultSet.next()) {
-                System.out.println("Product ID: " + resultSet.getString(1));
-                System.out.println("Product Name: " + resultSet.getString(2));
-                System.out.println("Unit Price: " + resultSet.getString(3));
-                System.out.println("Units In Stock: " + resultSet.getString(4));
-                System.out.println("======================================================");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public static void printProduct(Product product) {
+        System.out.println("Product ID: " + product.getProductID());
+        System.out.println("Product Name: " + product.getProductName());
+        System.out.println("Unit Price: " + product.getUnitPrice());
+        System.out.println("Units In Stock: " + product.getUnitsInStock());
+        System.out.println("================================================");
     }
 
-    public static void getProductById(BasicDataSource basicDataSource, int productId){
-        String productByIdQuery = "SELECT ProductID, ProductName, UnitPrice, UnitsInStock FROM products WHERE ProductID = ?";
-        try(Connection connection = basicDataSource.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(productByIdQuery);
-                ){
-            preparedStatement.setInt(1, productId);
-            try (ResultSet resultSet = preparedStatement.executeQuery()){
-                while(resultSet.next()){
-                    System.out.println("Product ID: " + resultSet.getString(1));
-                    System.out.println("Product Name: " + resultSet.getString(2));
-                    System.out.println("Unit Price: " + resultSet.getString(3));
-                    System.out.println("Units In Stock: " + resultSet.getString(4));
-                    System.out.println("======================================================");
-                }
-            }
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
 }
