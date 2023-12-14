@@ -1,6 +1,7 @@
 package com.pluralsight.db;
 
 import com.pluralsight.models.Actors;
+import com.pluralsight.models.Film;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -26,13 +27,7 @@ public class DataManager {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement actorsStatement = connection.prepareStatement(actorsQuery)) {
             actorsStatement.setString(1, lastName);
-         {
-
-            // Execute query to retrieve actors with the provided last name
-
-
-            try (
-
+            {
                 try (ResultSet actorsResult = actorsStatement.executeQuery()) {
                     if (actorsResult.next()) {
                         System.out.println("Your matches are: \n");
@@ -55,21 +50,28 @@ public class DataManager {
         }
         return actorsList;
     }
-/*
 
-    public List<Actors> getActorsByFirstName(Scanner scanner, Actors actors){
-
-        // Ask the user for a first name and last name of an actor
-        System.out.print("\nEnter the first name of an actor: ");
-        String firstName = scanner.nextLine();
-        System.out.print("Enter the last name of an actor: ");
-        lastName = scanner.nextLine();
-        return null;
+    public List<Film> getFilmsByActorsId(int actorsId) {
+        String query = "SELECT film.film_id, title, description, release_year, length FROM film INNER JOIN film_actor ON film.film_id WHERE film_actor.actor_id = ?";
+        List<Film> films = new ArrayList<>();
+        try(Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query)){
+            preparedStatement.setInt(1, actorsId);
+            try(ResultSet resultSet = preparedStatement.executeQuery()){
+                if(resultSet.next()){
+                    int filmId = resultSet.getInt(1);
+                    String title = resultSet.getString(2);
+                    String description = resultSet.getString(3);
+                    int releaseYear = resultSet.getInt(4);
+                    int length = resultSet.getInt(5);
+                    Film film = new Film(filmId, title, description, releaseYear, length);
+                    films.add(film);
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return films;
     }
-
-*/
-
-
-
 
 }
