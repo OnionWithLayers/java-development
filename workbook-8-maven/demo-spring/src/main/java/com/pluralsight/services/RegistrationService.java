@@ -12,7 +12,7 @@ public class RegistrationService {
     // using the interface here, not the implementation. And we're not doing 'implements interface' bc we
     // don't want every method, just some of them and we can choose whichever
     @Autowired //autowired lets me inject this wherever w/o needing to make an instance of it
-                // links it to the Spring Container and lets it use whatever is in it
+    // injects this to the Spring Container and lets us use whatever is in the Spring Container
     public RegistrationService(IRegistrationDAO registrationDAO) {
         this.registrationDAO = registrationDAO;
     }
